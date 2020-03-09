@@ -90,7 +90,6 @@ public class Main {
 		if (feeEntries != null) {
 			builder.setFees(feeEntries);
 		}
-		builder.setOutputInterval(10000);
 		
 		// How the statistics output should be handled / processed.
 		builder.setOutputProcessor(entries -> {
@@ -100,7 +99,7 @@ public class Main {
 			} else {
 				entries.forEach(entry -> sb.append(parserAndFormatter.outputEntryWithoutFee(entry)).append("\n"));
 			}
-			terminal.write("" + System.currentTimeMillis() + "\n" + sb.toString());
+			terminal.write(sb.toString());
 		});
 		EntryProcessor processor = builder.build();		
 		
