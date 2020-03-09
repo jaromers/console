@@ -15,21 +15,25 @@ public class ParserAndFormatterImpl implements ParserAndFormatter {
 	@Override
 	public InputEntry parseInputEntry(String line) throws ParseException, CommandException {
 		Scanner scanner = new Scanner(line);
-		scanner.useLocale(Locale.US);
-		if (scanner.hasNextFloat()) {
-			float weight = scanner.nextFloat();			
-			if (scanner.hasNext("\\d{5}")) {				
-				String zipCode = scanner.next("\\d{5}");
-				if (!scanner.hasNext()) {
-					return new InputEntry(zipCode, weight);
+		try {
+			scanner.useLocale(Locale.US);
+			if (scanner.hasNextFloat()) {
+				float weight = scanner.nextFloat();
+				if (scanner.hasNext("\\d{5}")) {
+					String zipCode = scanner.next("\\d{5}");
+					if (!scanner.hasNext()) {
+						return new InputEntry(zipCode, weight);
+					} else {
+						throw new ParseException("Unexpected input at the end of input line");
+					}
 				} else {
-					throw new ParseException("Unexpected input at the end of input line");
+					throw new ParseException("Unexpected input following zip code");
 				}
-			} else {
-				throw new ParseException("Unexpected input following zip code");
+			} else if (scanner.hasNext("quit")) {
+				throw new CommandException(CommandException.Command.QUIT);
 			}
-		} else if (scanner.hasNext("quit")) {
-			throw new CommandException(CommandException.Command.QUIT);
+		} finally {
+			scanner.close();
 		}
 		throw new ParseException("Unexpected input at the start of input line");
 	}
@@ -37,21 +41,25 @@ public class ParserAndFormatterImpl implements ParserAndFormatter {
 	@Override
 	public FeeEntry parseFeeEntry(String line) throws ParseException {
 		Scanner scanner = new Scanner(line);
-		scanner.useLocale(Locale.US);
-		if (scanner.hasNextFloat()) {
-			float weight = scanner.nextFloat();
+		try {
+			scanner.useLocale(Locale.US);
 			if (scanner.hasNextFloat()) {
-				float fee = scanner.nextFloat();
-				if (!scanner.hasNext()) {
-					return new FeeEntry(weight, fee);
+				float weight = scanner.nextFloat();
+				if (scanner.hasNextFloat()) {
+					float fee = scanner.nextFloat();
+					if (!scanner.hasNext()) {
+						return new FeeEntry(weight, fee);
+					} else {
+						throw new ParseException("Unexpected input at the end of input line");
+					}
 				} else {
-					throw new ParseException("Unexpected input at the end of input line");
+					throw new ParseException("Unexpected input after weight");
 				}
 			} else {
-				throw new ParseException("Unexpected input after weight");
+				throw new ParseException("Unexpected input at the start of input line");
 			}
-		} else {
-			throw new ParseException("Unexpected input at the start of input line");
+		} finally {
+			scanner.close();
 		}
 	}
 
