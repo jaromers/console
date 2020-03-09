@@ -14,6 +14,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InputEntry {
+	/**
+	 * Destination zip code, where the package is supposed to be sent.
+	 */
 	protected String zipCode;
+	
+	/**
+	 * Weight of the item to be sent.
+	 */
 	protected double weight;
 }
