@@ -13,13 +13,16 @@ public class ParserAndFormatterImplTest {
 
 	private ParserAndFormatter parserFormatter = new ParserAndFormatterImpl();
 	
-	@Test(expected = ParseException.class)
+	@Test
 	public void testParseInputEntry() {
-		InputEntry input = parserFormatter.parseInputEntry("12345 3.23");
+		InputEntry input = parserFormatter.parseInputEntry("3.23 12345");
 		Assert.assertEquals(input.getZipCode(), "12345");
-		Assert.assertEquals(input.getWeight(), 3.23, 0.001);
-		
-		input = parserFormatter.parseInputEntry("12345 3.23 d");
+		Assert.assertEquals(input.getWeight(), 3.23, 0.001);		
+	}
+	
+	@Test(expected = ParseException.class)
+	public void testParseInputEntryError() {
+		parserFormatter.parseInputEntry("3.23 12345 d");
 	}
 	
 	@Test(expected = ParseException.class)
@@ -28,6 +31,11 @@ public class ParserAndFormatterImplTest {
 		Assert.assertEquals(input.getWeight(), 10, 0.001);
 		Assert.assertEquals(input.getFee(), 2.5, 0.001);
 		input = parserFormatter.parseFeeEntry("12345 ax");
+	}
+	
+	@Test(expected = ParseException.class)
+	public void testParseFeeEntryError() {
+		parserFormatter.parseFeeEntry("x 10 2.50");
 	}
 	
 	@Test

@@ -16,10 +16,10 @@ public class ParserAndFormatterImpl implements ParserAndFormatter {
 	public InputEntry parseInputEntry(String line) throws ParseException, CommandException {
 		Scanner scanner = new Scanner(line);
 		scanner.useLocale(Locale.US);
-		if (scanner.hasNext("\\d{5}")) {
-			String zipCode = scanner.next("\\d{5}");
-			if (scanner.hasNextFloat()) {
-				float weight = scanner.nextFloat();
+		if (scanner.hasNextFloat()) {
+			float weight = scanner.nextFloat();			
+			if (scanner.hasNext("\\d{5}")) {				
+				String zipCode = scanner.next("\\d{5}");
 				if (!scanner.hasNext()) {
 					return new InputEntry(zipCode, weight);
 				} else {
