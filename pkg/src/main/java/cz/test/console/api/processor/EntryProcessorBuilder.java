@@ -1,4 +1,4 @@
-package cz.test.console.processor.api;
+package cz.test.console.api.processor;
 
 import java.util.List;
 

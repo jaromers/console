@@ -1,4 +1,4 @@
-package cz.test.console.processor.impl;
+package cz.test.console.impl.processor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import cz.test.console.api.processor.EntryProcessor;
+import cz.test.console.api.processor.EntryProcessorBuilder;
 import cz.test.console.model.FeeEntry;
 import cz.test.console.model.InputEntry;
 import cz.test.console.model.OutputEntry;
-import cz.test.console.processor.api.EntryProcessor;
-import cz.test.console.processor.api.EntryProcessorBuilder;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.disposables.Disposable;

@@ -1,4 +1,4 @@
-package cz.test.console.processor.api;
+package cz.test.console.api.processor;
 
 import cz.test.console.model.InputEntry;
 

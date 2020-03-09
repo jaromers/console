@@ -1,4 +1,4 @@
-package cz.test.console.processor.impl;
+package cz.test.console.impl.processor;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -8,10 +8,11 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cz.test.console.api.processor.EntryProcessor;
+import cz.test.console.impl.processor.EntryProcessorBuilderImpl;
 import cz.test.console.model.FeeEntry;
 import cz.test.console.model.InputEntry;
 import cz.test.console.model.OutputEntry;
-import cz.test.console.processor.api.EntryProcessor;
 import io.reactivex.functions.Consumer;
 
 public class EntryProcessorImplTest {

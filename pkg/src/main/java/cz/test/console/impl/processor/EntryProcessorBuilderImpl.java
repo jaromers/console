@@ -1,12 +1,12 @@
-package cz.test.console.processor.impl;
+package cz.test.console.impl.processor;
 
 import java.util.Arrays;
 import java.util.List;
 
+import cz.test.console.api.processor.EntryProcessor;
+import cz.test.console.api.processor.EntryProcessorBuilder;
 import cz.test.console.model.FeeEntry;
 import cz.test.console.model.OutputEntry;
-import cz.test.console.processor.api.EntryProcessor;
-import cz.test.console.processor.api.EntryProcessorBuilder;
 import io.reactivex.functions.Consumer;
 import lombok.Getter;
 import lombok.Setter;
